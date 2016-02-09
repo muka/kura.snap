@@ -12,8 +12,16 @@ mvn install -DskipTests
 
 echo "Install kura deps"
 cd ../kura
-ln -s ./manifest_pom.xml pom.xml
-mvn install -DskipTests
+
+#Build with CAN support
+mvn -Dmaven.test.skip=true -f manifest_pom.xml -Pcan clean install
+# Build with web UI
+mvn -Dmaven.test.skip=true -f pom_pom.xml -Pweb clean install
+
+#Build without CAN support
+#mvn -Dmaven.test.skip=true -f manifest_pom.xml clean install
+# or build without web UI
+#mvn -Dmaven.test.skip=true -f pom_pom.xml clean install
 
 echo "package"
 cd distrib

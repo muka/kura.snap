@@ -1,9 +1,9 @@
 name: eclipse-kura
 version: 1.0
-vendor: create-net <lcapra@create-net.org>
 summary: Kura offers a container for M2M applications running in service gateways
 description: Kura aims at offering a Java/OSGi-based container for M2M applications running in service gateways.
 icon: logo.png
+
 
 # apps:
 #  tomcat:
@@ -23,15 +23,16 @@ icon: logo.png
 
 parts:
 
-  # kura install
   jdk:
     plugin: jdk
     source: .
 
   build:
+    after:
+      - jdk
     plugin: make
     source: .
-    stage-packages:
+    build-packages:
       - hostapd
       - iw
       - dos2unix
