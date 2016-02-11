@@ -29,56 +29,60 @@ parts:
     build-packages:
       - ca-certificates-java
 
-  target-platform:
-    plugin: maven
-    maven-options:
-      - -f target-platform/pom.xml
-      - -DskipTests
-    source: https://github.com/eclipse/kura
-    source-type: git
-    source-branch: KURA_1.3.0_RELEASE
+  # target-platform:
+  #   plugin: maven
+  #   maven-options:
+  #     - -f target-platform/pom.xml
+  #     - -DskipTests
+  #   source: https://github.com/eclipse/kura
+  #   source-type: git
+  #   source-branch: KURA_1.3.0_RELEASE
 
-  can-support:
-    after:
-      - target-platform
-    plugin: maven
-    maven-options:
-      - -Dmaven.test.skip=true
-      - -f kura/manifest_pom.xml
-      - -Pcan
-    source: https://github.com/eclipse/kura
-    source-type: git
-    source-branch: KURA_1.3.0_RELEASE
+  # can-support:
+  #   after:
+  #     - target-platform
+  #   plugin: maven
+  #   maven-options:
+  #     - -Dmaven.test.skip=true
+  #     - -f kura/manifest_pom.xml
+  #     - -Pcan
+  #   source: https://github.com/eclipse/kura
+  #   source-type: git
+  #   source-branch: KURA_1.3.0_RELEASE
 
-  web-ui:
+  # web-ui:
+  #   after:
+  #     - target-platform
+  #   plugin: maven
+  #   maven-options:
+  #     - -Dmaven.test.skip=true
+  #     - -f kura/pom_pom.xml
+  #     - -Pweb
+  #   source: https://github.com/eclipse/kura
+  #   source-type: git
+  #   source-branch: KURA_1.3.0_RELEASE
+  #   stage-packages:
+  #     - hostapd
+  #     - iw
+  #     - dos2unix
+  #     - bind9
+  #     - isc-dhcp-server
+
+  kura-build:
     after:
-      - target-platform
-    plugin: maven
-    maven-options:
-      - -Dmaven.test.skip=true
-      - -f kura/pom_pom.xml
-      - -Pweb
-    source: https://github.com/eclipse/kura
-    source-type: git
-    source-branch: KURA_1.3.0_RELEASE
+      - install-jdk
+    plugin: make
+    source: .
+    build-packages:
+     - maven
+     - wget
+     - unzip
     stage-packages:
       - hostapd
       - iw
       - dos2unix
       - bind9
       - isc-dhcp-server
-
-#   build:
-#     after:
-#       - jdk
-#     plugin: make
-#     source: .
-#     build-packages:
-# #      - mvn
-#
-#     stage-packages:
-#       - hostapd
-#       - iw
-#       - dos2unix
-#       - bind9
-#       - isc-dhcp-server
+      - unzip
+      - ethtool
+      - telnet

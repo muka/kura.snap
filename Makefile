@@ -6,3 +6,4 @@ install:
 
 
 clean:
+	sh clean.sh
