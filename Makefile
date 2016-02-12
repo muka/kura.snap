@@ -1,9 +1,7 @@
 
 all:
-	sh ./build.sh
-
+	@echo "kura.snap: make all"
 install:
-
-
+	sh ./bin/install.sh ${DESTDIR}
 clean:
-	sh clean.sh
+	sh ./bin/clean.sh
