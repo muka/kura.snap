@@ -1,0 +1,14 @@
+{
+  "transport": "scp",
+  "hostname": "pi2",
+  "port": "22",
+  "username": "ubuntu",
+  "password": "ubuntu",
+  "uploadOnSave": true,
+  "target": "/home/ubuntu/kura.snap",
+  "ignore": [
+    ".remote-sync.json",
+    ".git/**"
+  ],
+  "deleteLocal": false
+}

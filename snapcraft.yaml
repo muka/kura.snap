@@ -9,6 +9,23 @@ apps:
  kura:
    command: bin/launch
    daemon: simple
+   uses: [javadude]
+
+uses:
+  javadude:
+    type: migration-skill
+    security-override:
+      read-paths:
+        - /etc/hosts
+        - /etc/host.conf
+      # write-paths:
+      #   -
+      syscalls:
+        - shutdown
+    caps:
+     - network-client
+     - network-listener
+     - network-service
 
 parts:
 

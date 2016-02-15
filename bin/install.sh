@@ -12,6 +12,7 @@ unzip kuradeb/tmp/kura_*.zip -d ./ > /dev/null
 
 mv kura_* kura
 
+echo "* Make dirs"
 mkdir -p $DESTDIR/opt/eclipse
 
 mkdir -p $DESTDIR/var/log
